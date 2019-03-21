@@ -1,8 +1,24 @@
 import numpy as np
 import scipy.interpolate as interp
 import matplotlib.pyplot as plt
+plt.style.use('bmh')    # Nicer looking plots
+
+####################
+# fra numfy
+####################
+# Properties of the rolling object
+r = 0.01                 # m      (radius)
+#rho = 7850               # kg/m^3 (density)
+g = 9.81                 # m/s^2  (gravitational acceleration)
 
 
+c1 = 2/3            # kuleskall
+c2 = 2/5            # kule
+c3 = 1              # tynn sirkulær skive
+
+I0 = c*m*r**2            # kg m^2 (moment of inertia)
+
+########################333
 def iptrack(filename):
 	data=np.loadtxt(filename,skiprows=2)
 	return np.polyfit(data[:,1],data[:,2],15), data[0,1]
