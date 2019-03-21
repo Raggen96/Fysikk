@@ -1,5 +1,7 @@
 import numpy as np
-from matplotlib import pyplot as plt
+import scipy.interpolate as interp
+import matplotlib.pyplot as plt
+
 
 def iptrack(filename):
 	data=np.loadtxt(filename,skiprows=2)
