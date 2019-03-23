@@ -28,13 +28,13 @@ I03 = c3*m*r**2
 ########################
 
 
-N = len(yi)               #   (# of mounts)
-xi = np.linspace(0, L, N) # m (x-positions)
-plt.plot(xi, yi)
-plt.show()
+#N = len(yi)               #   (# of mounts)
+#xi = np.linspace(0, L, N) # m (x-positions)
+#plt.plot(xi, yi)
+#plt.show()
 
 
-get_y = interp.CubicSpline(xi, yi, bc_type="natural")
+#get_y = interp.CubicSpline(xi, yi, bc_type="natural")
 
 # KALKULERER theta
 # trvalues - track values
@@ -55,8 +55,6 @@ get_y = interp.CubicSpline(xi, yi, bc_type="natural")
 # The slope angle alpha is positive for a curve with a negative derivative.
 # The sign of the radius of the osculating circle is the same as that of
 # the second derivative.
-
-import numpy as np
 
 
 def trvalues(p,x):
@@ -92,11 +90,25 @@ def trvalues(p,x):
 # that is the least square fit to the data y(x). Coefficients are given in
 # descending powers.
 
-import numpy as np
 
 def iptrack(filename):
-	data=np.loadtxt(filename,skiprows=2)
-	return np.polyfit(data[:,1],data[:,2],15)
+	data = np.loadtxt(filename, skiprows=2)
+	return np.polyfit(data[:, 1], data[:, 2], 30)
 
 
+p = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\286.txt')
 
+plt.plot(p)
+plt.show()
+
+def trvalues(p,x):
+	y=np.polyval(p,x)
+	dp=np.polyder(p)
+	dydx=np.polyval(dp,x)
+	ddp=np.polyder(dp)
+	d2ydx2=np.polyval(ddp,x)
+	alpha=np.arctan(-dydx)
+	R=(1.0+dydx**2)**1.5/d2ydx2
+	return [y,dydx,d2ydx2,alpha,R]
+
+trvalues(p)
