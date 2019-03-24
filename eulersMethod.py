@@ -96,6 +96,7 @@ def iptrack(filename):
 	data = np.loadtxt(filename, skiprows=2)
 	return np.polyfit(data[:, 1], data[:, 2], 15)
 
+
 p = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\liten ball\86.txt')
 
 
@@ -108,7 +109,7 @@ def x_positions (filename):
 	return(x)
 
 
-x= x_positions(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\liten ball\86.txt')
+x = x_positions(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\liten ball\86.txt')
 
 
 def trvalues(p,x):
@@ -129,7 +130,7 @@ def trvalues(p,x):
 
 x2 = [-0.4, 0.2]
 
-print(trvalues(p, x2)[1])
+#print(trvalues(p, x2)[1])
 
 
 yposition_list = trvalues(p, x2)[0]
@@ -139,9 +140,15 @@ alpha_list = trvalues(p, x2)[3]
 R_list = trvalues(p, x2)[4]
 
 
-def plot(p):
+def plotPolynomial(p):
 	funksjon = ''
-	eksp = 15
+	ekspon = 15
 	for i in p:
-		funksjon += p(1)*x**eksp
-		eksp -= 1
+		funksjon += p[1]
+		funksjon += x**ekspon
+		ekspon -= 1
+	print(funksjon)
+
+
+print(plotPolynomial(p))
+
