@@ -5,12 +5,12 @@ import matplotlib.pyplot as plt
 
 
 def iptrack(filename):
-	#ta bare den første, skal bare ha et utrykk for banen
-	data = np.loadtxt(filename, skiprows=2)
-	return np.polyfit(data[:, 1], data[:, 2], 15)
+    #ta bare den første, skal bare ha et utrykk for banen
+    data = np.loadtxt(filename, skiprows=2)
+    return np.polyfit(data[:, 1], data[:, 2], 15)
+
 
 p = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\liten ball\86.txt')
-
 
 
 
@@ -51,58 +51,63 @@ c2= 2/5
 c3 = 1
 g = 9.81
 
-###############   x_n+1   ###############
 
-t2_0 = 0
-x2_0 = -0.427
+############   v_n+1   ##################
 
-t2 = np.zeros(N + 1)
-x2 = np.zeros(N + 1)
+t_0 = 0
+v_0 = 0
 
-t2[0] = t2_0
-x2[0] = x2_0
+t = np.zeros(N + 1)
+v = np.zeros(N + 1)
 
-t2_old = t2_0
-x2_old = x2_0
+t[0] = t_0
+v[0] = v_0
 
-
-for n in range(N):
-    val = trvalues(p, x2_old)
-    x2_new = x2_old + h * (val[1])  # Euler's method
-
-    t2[n + 1] = t2_old + h
-    x2[n + 1] = x2_new
-
-    t2_old = t2_old + h
-    x2_old = x2_new
-
-
-
-
-##############################
+t_old = t_0
+v_old = v_0
 
 for n in range(N):
     val = trvalues(p, x_old)
     print (val)
-    x_new = x_old + h * (g*np.sin(val[3])/(1+c2))  # Euler's method
+    v_new = v_old + h * (g*np.sin(val[3])/(1+c2))  # Euler's method
 
     t[n + 1] = t_old + h
-    x[n + 1] = x_new
+    v[n + 1] = v_new
 
     t_old = t_old + h
+    v_old = v_new
+
+print(r'x_N = %f' % v_old)
+
+###############   x_n+1   ###############
+
+t2_0 = 0
+x_0 = -0.427
+
+t2 = np.zeros(N + 1)
+x = np.zeros(N + 1)
+
+t2[0] = t2_0
+x[0] = x_0
+
+t2_old = t2_0
+x_old = x_0
+
+
+for n in range(N):
+    val = trvalues(p, x_old)
+    x_new = x_old + h * (v[n])  # Euler's method
+
+    t2[n + 1] = t2_old + h
+    x[n + 1] = x_new
+
+    t2_old = t2_old + h
     x_old = x_new
 
-print(r'x_N = %f' % x_old)
 
-# Plot x(t)
-#plt.figure()
-#plt.plot(t, x)
-#plt.ylabel(r'$x(t)$')
-#plt.xlabel(r'$t$')
-#plt.grid()
-#plt.show()
 
-test = [0,1]
+
+test = [0]
 
 def x_av_t(filename):
     x= []
@@ -117,9 +122,27 @@ def x_av_t(filename):
 punkter = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\liten ball\86.txt')
 
 
-for i in test:
-    plt.plot(t2,x2, color = '#4daf4a')
+def plot_xt():
+    plt.figure()
+    plt.ylabel(r'$x(t)$')
+    plt.xlabel(r'$t$')
+    #fjerner gridet
+    plt.grid()
+    plt.plot(t2,x, color = '#4daf4a')
     plt.plot(punkter[2], punkter[0], color = '#377eb8')
+    plt.show()
+
+
+plot_xt()
+
+def plot_vt():
+    plt.figure()
+    plt.ylabel(r'$x(t)$')
+    plt.xlabel(r'$t$')
+    # fjerner gridet
+    plt.grid()
+    plt.plot(t2, x, color='#4daf4a')
+    plt.plot(punkter[2], punkter[0], color='#377eb8')
     plt.show()
 
 
