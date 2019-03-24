@@ -141,4 +141,7 @@ R_list = trvalues(p, x2)[4]
 
 def plot(p):
 	funksjon = ''
-
+	eksp = 15
+	for i in p:
+		funksjon += p(1)*x**eksp
+		eksp -= 1
