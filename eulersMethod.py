@@ -92,23 +92,53 @@ def trvalues(p,x):
 
 
 def iptrack(filename):
+	#ta bare den første, skal bare ha et utrykk for banen
 	data = np.loadtxt(filename, skiprows=2)
-	return np.polyfit(data[:, 1], data[:, 2], 30)
+	return np.polyfit(data[:, 1], data[:, 2], 15)
+
+p = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\liten ball\86.txt')
 
 
-p = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\286.txt')
+def x_positions (filename):
+	x = []
+	#for line in filename:
+	data = np.loadtxt(filename, skiprows=2)
+	for liste in data:
+		x.append(liste[1])
+	return(x)
 
-plt.plot(p)
-plt.show()
+x= x_positions(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\liten ball\86.txt')
+
 
 def trvalues(p,x):
+	# alle verdiene vi har, alle de forskjellige x-verdiene, får ut yverdiene
+	#diffligning, a.ytrykk, a =v', s=v', starter med x0, plusser på xsize
+	#xold, xnew, fyller
+	# 1/1000
+	#finner opp x-verdier, funksjonen vil gi til akurat de punktet vi putter inn
 	y=np.polyval(p,x)
+	#print ("********'test1*********", y)
 	dp=np.polyder(p)
 	dydx=np.polyval(dp,x)
+	#print("*******'test2**********", dydx)
 	ddp=np.polyder(dp)
 	d2ydx2=np.polyval(ddp,x)
+	#print("********test3*******", d2ydx2)
 	alpha=np.arctan(-dydx)
 	R=(1.0+dydx**2)**1.5/d2ydx2
+	#print("heihei")
 	return [y,dydx,d2ydx2,alpha,R]
 
-trvalues(p)
+
+x2 = [-0.4, -0.2, 0.0, 0.2]
+
+print(trvalues(p, x2))
+
+def putinlist():
+	yposition = []
+	alphas = []
+	R = []
+	dydx = []
+	d2ydx2 = []
+
+
