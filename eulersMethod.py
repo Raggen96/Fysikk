@@ -150,5 +150,7 @@ def plotPolynomial(p):
 	print(funksjon)
 
 
-print(plotPolynomial(p))
-
+#print(plotPolynomial(p))
+r=[-0.5, 1, 0.5]
+plt.plot('2r**2 + 2')
+plt.show()
