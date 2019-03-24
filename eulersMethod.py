@@ -107,6 +107,7 @@ def x_positions (filename):
 		x.append(liste[1])
 	return(x)
 
+
 x= x_positions(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\liten ball\86.txt')
 
 
@@ -116,29 +117,28 @@ def trvalues(p,x):
 	#xold, xnew, fyller
 	# 1/1000
 	#finner opp x-verdier, funksjonen vil gi til akurat de punktet vi putter inn
-	y=np.polyval(p,x)
-	#print ("********'test1*********", y)
-	dp=np.polyder(p)
-	dydx=np.polyval(dp,x)
-	#print("*******'test2**********", dydx)
-	ddp=np.polyder(dp)
-	d2ydx2=np.polyval(ddp,x)
-	#print("********test3*******", d2ydx2)
-	alpha=np.arctan(-dydx)
-	R=(1.0+dydx**2)**1.5/d2ydx2
-	#print("heihei")
-	return [y,dydx,d2ydx2,alpha,R]
+	y = np.polyval(p, x)
+	dp = np.polyder(p)
+	dydx = np.polyval(dp, x)
+	ddp = np.polyder(dp)
+	d2ydx2 = np.polyval(ddp, x)
+	alpha = np.arctan(-dydx)
+	R =(1.0+dydx**2)**1.5/d2ydx2
+	return [y, dydx, d2ydx2, alpha, R]
 
 
-x2 = [-0.4, -0.2, 0.0, 0.2]
+x2 = [-0.4, 0.2]
 
-print(trvalues(p, x2))
+print(trvalues(p, x2)[1])
 
-def putinlist():
-	yposition = []
-	alphas = []
-	R = []
-	dydx = []
-	d2ydx2 = []
 
+yposition_list = trvalues(p, x2)[0]
+dydx_list = trvalues(p, x2)[1]
+d2ydx2_list = trvalues(p, x2)[2]
+alpha_list = trvalues(p, x2)[3]
+R_list = trvalues(p, x2)[4]
+
+
+def plot(p):
+	funksjon = ''
 
