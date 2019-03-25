@@ -1,5 +1,4 @@
-
-
+#from sympy import *
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -36,23 +35,26 @@ x[0] = x_0
 t_old = t_0
 x_old = x_0
 
-def trvalues(p,x_old):
+
+def trvalues(p, x_old):
     y = np.polyval(p, x_old)
     dp = np.polyder(p)
     dydx = np.polyval(dp, x_old)
     ddp = np.polyder(dp)
     d2ydx2 = np.polyval(ddp, x_old)
     alpha = np.arctan(-dydx)
-    R =(1.0+dydx**2)**1.5/d2ydx2
+    R = (1.0+dydx**2)**1.5/d2ydx2
     return [y, dydx, d2ydx2, alpha, R]
 
+
 c1 = 2/3
-c2= 2/5
+c2 = 2/5
 c3 = 1
 g = 9.81
 
 
-############   v_n+1   ##################
+# eulers v_n+1
+
 
 t_0 = 0
 v_0 = 0
@@ -68,7 +70,6 @@ v_old = v_0
 
 for n in range(N):
     val = trvalues(p, x_old)
-    print (val)
     v_new = v_old + h * (g*np.sin(val[3])/(1+c2))  # Euler's method
 
     t[n + 1] = t_old + h
@@ -77,9 +78,9 @@ for n in range(N):
     t_old = t_old + h
     v_old = v_new
 
-print(r'x_N = %f' % v_old)
+#print(r'x_N = %f' % v_old)
 
-###############   x_n+1   ###############
+# eulers x_n+1
 
 t2_0 = 0
 x_0 = -0.427
@@ -104,22 +105,38 @@ for n in range(N):
     t2_old = t2_old + h
     x_old = x_new
 
-
-
-
-test = [0]
-
+# gir eksperementielle verdier for x, y og t
 def x_av_t(filename):
-    x= []
-    y = []
-    t = []
+    xpos = []
+    ypos = []
+    tpos = []
     data = np.loadtxt(filename, skiprows=2)
     for line in data:
-        x.append(line[1])
-        y.append(line[2])
-        t.append(line[0])
-    return [x, y, t]
+        xpos.append(line[1])
+        ypos.append(line[2])
+        tpos.append(line[0])
+    return [xpos, ypos, tpos]
+
+
 punkter = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\New\liten ball\liten ball\86.txt')
+
+
+# bruker polynomet for å finne vt
+
+def finds_vt():
+    func = ''
+    e = 15
+    z = symbol(z)
+    for i in range(16):
+        numb = p[i]*z**e
+        func = numb
+        e -= 1
+
+#finds_vt()
+
+
+tr = trvalues(p, punkter[0])
+vt = tr[1]
 
 
 def plot_xt():
@@ -128,7 +145,7 @@ def plot_xt():
     plt.xlabel(r'$t$')
     #fjerner gridet
     plt.grid()
-    plt.plot(t2,x, color = '#4daf4a')
+    plt.plot(t2, x, color = '#4daf4a')
     plt.plot(punkter[2], punkter[0], color = '#377eb8')
     plt.show()
 
@@ -137,12 +154,14 @@ plot_xt()
 
 def plot_vt():
     plt.figure()
-    plt.ylabel(r'$x(t)$')
+    plt.ylabel(r'$v(t)$')
     plt.xlabel(r'$t$')
     # fjerner gridet
     plt.grid()
-    plt.plot(t2, x, color='#4daf4a')
-    plt.plot(punkter[2], punkter[0], color='#377eb8')
+    plt.plot(t, v, color='#4daf4a')
+    plt.plot(punkter[2], vt, color='#377eb8')
     plt.show()
 
+
+#plot_vt()
 
