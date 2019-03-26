@@ -10,9 +10,9 @@ def iptrack(filename):
     return np.polyfit(data[:, 1], data[:, 2], 15)
 
 
-pLB = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\LBU.txt')
-pPP = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\PPU.txt')
-pR = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\RU.txt')
+pLB = iptrack(r'./LBU.txt')
+pPP = iptrack(r'./PPU.txt')
+pR = iptrack(r'./RU.txt')
 
 pAll = [pLB, pPP, pR]
 g = 9.81
@@ -95,32 +95,24 @@ def x_av_t(filename):   # gir eksperementielle verdier for x v t
     return [tpos, vpos, xpos, ypos]
 
 
-punkterLB = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\LB.txt')
-punkterPP = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\PP.txt')
-punkterR = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\R.txt')
+punkterLB = x_av_t(r'./LB.txt')
+punkterPP = x_av_t(r'./PP.txt')
+punkterR = x_av_t(r'./R.txt')
 
 punkterAll = [punkterLB, punkterPP, punkterR]
 
 
 def plot_xt():
-    plt.figure()
-    plt.ylabel(r'$x(t)$')
-    plt.xlabel(r'$t$')
-    plt.grid()
-    plt.plot(t2, x, color = '#4daf4a', label=labelNum)
-    plt.plot(p0, p2, color = '#377eb8', label=labelEks)
-    plt.legend()
+    plt.figure(0)
+    plt.plot(t2, x, label=labelNum)
+    plt.plot(p0, p2, label=labelEks)
 
 def plot_vt():
-    plt.figure()
-    plt.ylabel(r'$v(t)$')
-    plt.xlabel(r'$t$')
-    plt.grid()
+    plt.figure(1)
     #print ("t-verdier:", t)
     #print("v-verdier: ", v)
-    plt.plot(t, v, color='#4daf4a', label=labelNum)
-    plt.plot(p0, p1, color='#377eb8', label=labelEks)
-    plt.legend()
+    plt.plot(t, v, label=labelNum)
+    plt.plot(p0, p1, label=labelEks)
 
 
 cPP = 2 / 3
@@ -153,7 +145,7 @@ for n in range(3):
     c = cAll[n]
     p = pAll[n]
     euler_xt()
-    # plot_xt()
+    plot_xt()
     euler_vt()
     plot_vt()
     # print ('Resultat av v for', n, v)
@@ -164,9 +156,22 @@ print (v_values)
 
 #print("v-verdier", v_values)
 # plt.figure()
+
+plt.figure(0)
+plt.ylabel(r'$x(t)$')
+plt.xlabel(r'$t$')
+plt.grid()
+plt.legend()
+
+plt.figure(1)
 plt.ylabel(r'$v(t)$')
 plt.xlabel(r'$t$')
 plt.grid()
+plt.legend()
+
+# plt.ylabel(r'$v(t)$')
+# plt.xlabel(r'$t$')
+# plt.grid()
 
 #plt.plot(t, v, color='#4daf4a', label=labelNum)
 #plt.plot(p0, p1, color='#377eb8', label=labelEks)
@@ -179,8 +184,8 @@ vv2 = v_values[2]
 #plt.plot(t_values[0], v_values[0])
 #plt.plot(t_values[1], v_values[1], label='test2')
 #plt.plot(t_values[2], v_values[2], label='test3')
-plt.legend()
-#plt.show()
+# plt.legend()
+plt.show()
 
 
 
