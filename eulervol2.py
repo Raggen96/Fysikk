@@ -120,7 +120,16 @@ def plot_vt():
     plt.show()
 
 
-
+c1 = 2 / 3
+c2 = 2 / 5
+c3 = 1
+cAll = [c1, c2, c3]
 plot_xt()
-plot_vt()
+
+
+for n in range (3):
+    punkter = punkterAll[n]
+    c = cAll[n]
+    p = pAll[n]
+
 

@@ -43,9 +43,6 @@ c3 = 1
 g = 9.81
 
 
-
-
-
 #teoretisk fart vha Euler
 
 for n in range(N):
