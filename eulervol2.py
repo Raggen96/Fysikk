@@ -119,8 +119,8 @@ cPP = 2 / 3
 cLB = 2 / 5
 cR = 1
 cAll = [cLB, cPP, cR]
-labelAllEks = ["Liten Ball Eksperementiell", "Ping pong Eksperementiell", "Ring Eksperementiell"]
-labelAllNum = ["Liten Ball Teoretisk", "Ping pong Teoretisk", "Ring Teoretisk"]
+labelAllEks = ["Kule eksperimentiell", "Kuleskall eksperimentiell", "Ring eksperimentiell"]
+labelAllNum = ["Kule teoretisk", "Kuleskall teoretisk", "Ring teoretisk"]
 
 v_0All = [1.1348810766934287, 1.1470505158475683, 1.0590491123276344]
 
