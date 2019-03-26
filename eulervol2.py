@@ -1,5 +1,6 @@
 #from sympy import *
 import numpy as np
+import math
 import matplotlib.pyplot as plt
 
 
@@ -35,11 +36,11 @@ def trvalues(p, x_old):
     d2ydx2 = np.polyval(ddp, x_old)
     alpha = np.arctan(-dydx)
     R = (1.0+dydx**2)**1.5/d2ydx2
+    #print('y:', y, 'dydx:', dydx, 'd2ydx2', d2ydx2, 'alpha', alpha, 'R', R)
     return [y, dydx, d2ydx2, alpha, R]
 
 
 t_0 = 0
-v_0 = 1.135
 t = np.zeros(N + 1)
 v = np.zeros(N + 1)
 def euler_vt():
@@ -48,7 +49,8 @@ def euler_vt():
     t_old = t_0
     v_old = v_0
     for n in range(N):
-        val = trvalues(p, v_old)
+        x_o = x[n]
+        val = trvalues(p, x_o)
         v_new = v_old + h * (g*np.sin(val[3])/(1+c))
         t[n + 1] = t_old + h
         v[n + 1] = v_new
@@ -69,7 +71,7 @@ def euler_xt():
     x_old = x_0
 
     for n in range(N):
-        val = trvalues(p, x_old)
+        #val = trvalues(p, x_old)
         x_new = x_old + h * (v[n])
         t2[n + 1] = t2_old + h
         x[n + 1] = x_new
@@ -108,17 +110,17 @@ def plot_xt():
     plt.plot(t2, x, color = '#4daf4a', label=labelNum)
     plt.plot(p0, p2, color = '#377eb8', label=labelEks)
     plt.legend()
-    plt.show()
 
 def plot_vt():
     plt.figure()
     plt.ylabel(r'$v(t)$')
     plt.xlabel(r'$t$')
     plt.grid()
+    #print ("t-verdier:", t)
+    #print("v-verdier: ", v)
     plt.plot(t, v, color='#4daf4a', label=labelNum)
     plt.plot(p0, p1, color='#377eb8', label=labelEks)
     plt.legend()
-    plt.show()
 
 
 cPP = 2 / 3
@@ -127,7 +129,21 @@ cR = 1
 cAll = [cLB, cPP, cR]
 labelAllEks = ["Liten Ball Eksperementiell", "Ping pong Eksperementiell", "Ring Eksperementiell"]
 labelAllNum = ["Liten Ball Teoretisk", "Ping pong Teoretisk", "Ring Teoretisk"]
-for n in range (3):
+
+v_0All = [1.1348810766934287, 1.1470505158475683, 1.0590491123276344]
+
+t_values = [[0], [0], [0]]
+
+test = []
+v_values = []
+t2_values = [[0], [0], [0]]
+x_values = [[0], [0], [0]]
+
+# Prøver å legge t, v og x verdiene inn i en liste sånn at jeg kan plotte alle. Når jeg printer v inni for løkken
+# får jeg forskjellige resultater hver for hver loop, men nnår jeg prøver å legge inn i v_values listen blir alle
+# verdiene like, skjønner ikke hvorfor
+for n in range(3):
+    v_0 = v_0All[n]
     labelEks = labelAllEks[n]
     labelNum = labelAllNum[n]
     p0 = punkterAll[n][0]
@@ -136,11 +152,35 @@ for n in range (3):
     p3 = punkterAll[n][3]
     c = cAll[n]
     p = pAll[n]
+    euler_xt()
+    # plot_xt()
     euler_vt()
     plot_vt()
-    euler_xt()
-    #plot_xt()
+    # print ('Resultat av v for', n, v)
+    v_values.append(v)
+    print( 'resultat for v: ', v, 'resultaterrr')
 
+print (v_values)
+
+#print("v-verdier", v_values)
+# plt.figure()
+plt.ylabel(r'$v(t)$')
+plt.xlabel(r'$t$')
+plt.grid()
+
+#plt.plot(t, v, color='#4daf4a', label=labelNum)
+#plt.plot(p0, p1, color='#377eb8', label=labelEks)
+tv0 = t_values[0]
+vv0 = v_values[0]
+tv1 = t_values[1]
+vv1 = v_values[1]
+tv2 = t_values[2]
+vv2 = v_values[2]
+#plt.plot(t_values[0], v_values[0])
+#plt.plot(t_values[1], v_values[1], label='test2')
+#plt.plot(t_values[2], v_values[2], label='test3')
+plt.legend()
+#plt.show()
 
 
 
