@@ -100,7 +100,7 @@ def x_av_t(filename):   # gir eksperementielle verdier for x v t
     return [tpos, vpos, xpos, ypos]
 
 
-punkterLB = x_av_t(r'/LB.txt')
+punkterLB = x_av_t(r'./LB.txt')
 punkterPP = x_av_t(r'./PP.txt')
 punkterR = x_av_t(r'./R.txt')
 
@@ -127,8 +127,8 @@ cLB = 2 / 5
 cR = 1
 cAll = [cLB, cPP, cR]
 
-labelAllEks = ["Massiv kule Eksperimentiell", "Kuleskall Eksperimentiell", "Sirkulær skive Eksperimentiell"]
-labelAllNum = ["Massiv kule Teoretisk", "Kuleskall Teoretisk", "Sirkulær skive teoretisk"]
+labelAllEks = ["Massiv kule Eksperimentell", "Kuleskall Eksperimentell", "Sirkulær skive Eksperimentell"]
+labelAllNum = ["Massiv kule Numerisk", "Kuleskall Numerisk", "Sirkulær skive Numerisk"]
 
 v_0All = [1.1348810766934287, 1.1470505158475683, 1.0590491123276344]
 
@@ -174,10 +174,6 @@ plt.ylabel(r'$v(t)$')
 plt.xlabel(r'$t$')
 plt.grid()
 plt.legend()
-<<<<<<< HEAD
-
-=======
->>>>>>> 5bdf202d0e3e8a6004311f57e09dd3f103067cc2
 
 plt.show()
 
