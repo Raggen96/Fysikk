@@ -16,6 +16,12 @@ pR = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\RU.txt')
 
 pAll = [pLB, pPP, pR]
 g = 9.81
+mass = [2.2, 4.7]
+
+def normalKraft():
+    allNormalKraft = np.zeros(N + 1)
+    for i in range(N):
+        normalK = m*()
 
 
 # Set common figure parameters
@@ -158,6 +164,18 @@ print (v_values)
 
 #print("v-verdier", v_values)
 # plt.figure()
+
+plt.figure(0)
+plt.ylabel(r'$x(t)$')
+plt.xlabel(r'$t$')
+plt.grid()
+plt.legend()
+
+plt.figure(1)
+plt.ylabel(r'$v(t)$')
+plt.xlabel(r'$t$')
+plt.grid()
+plt.legend()
 
 
 plt.show()
