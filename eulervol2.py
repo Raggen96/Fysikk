@@ -94,7 +94,7 @@ def x_av_t(filename):   # gir eksperementielle verdier for x v t
     return [tpos, vpos, xpos, ypos]
 
 
-punkterLB = x_av_t(r'LB.txt')
+punkterLB = x_av_t(r'/LB.txt')
 punkterPP = x_av_t(r'./PP.txt')
 punkterR = x_av_t(r'./R.txt')
 
