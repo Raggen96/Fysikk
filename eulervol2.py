@@ -10,9 +10,9 @@ def iptrack(filename):
     return np.polyfit(data[:, 1], data[:, 2], 15)
 
 
-pLB = iptrack(r'./LBU.txt')
-pPP = iptrack(r'./PPU.txt')
-pR = iptrack(r'./RU.txt')
+pLB = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\LBU.txt')
+pPP = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\PPU.txt')
+pR = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\RU.txt')
 
 pAll = [pLB, pPP, pR]
 g = 9.81
@@ -95,9 +95,9 @@ def x_av_t(filename):   # gir eksperementielle verdier for x v t
     return [tpos, vpos, xpos, ypos]
 
 
-punkterLB = x_av_t(r'./LB.txt')
-punkterPP = x_av_t(r'./PP.txt')
-punkterR = x_av_t(r'./R.txt')
+punkterLB = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\LB.txt')
+punkterPP = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\PP.txt')
+punkterR = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\R.txt')
 
 punkterAll = [punkterLB, punkterPP, punkterR]
 
@@ -119,8 +119,8 @@ cPP = 2 / 3
 cLB = 2 / 5
 cR = 1
 cAll = [cLB, cPP, cR]
-labelAllEks = ["Liten Ball Eksperementiell", "Ping pong Eksperementiell", "Ring Eksperementiell"]
-labelAllNum = ["Liten Ball Teoretisk", "Ping pong Teoretisk", "Ring Teoretisk"]
+labelAllEks = ["Massiv kule Eksperementiell", "Kuleskall Eksperementiell", "Sirkulær skive Eksperementiell"]
+labelAllNum = ["Massiv kule Teoretisk", "Kuleskall Teoretisk", "Sirkulær skive Teoretisk"]
 
 v_0All = [1.1348810766934287, 1.1470505158475683, 1.0590491123276344]
 
