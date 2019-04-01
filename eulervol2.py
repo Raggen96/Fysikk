@@ -10,9 +10,9 @@ def iptrack(filename):
     return np.polyfit(data[:, 1], data[:, 2], 15)
 
 
-pLB = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\LBU.txt')
-pPP = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\PPU.txt')
-pR = iptrack(r'C:\Users\Elise\Documents\6. semester\Fysikk\RU.txt')
+pLB = iptrack(r'./LBU.txt')
+pPP = iptrack(r'./PPU.txt')
+pR = iptrack(r'./RU.txt')
 
 pAll = [pLB, pPP, pR]
 g = 9.81
@@ -42,7 +42,6 @@ def trvalues(p, x_old):
     d2ydx2 = np.polyval(ddp, x_old)
     alpha = np.arctan(-dydx)
     R = (1.0+dydx**2)**1.5/d2ydx2
-    #print('y:', y, 'dydx:', dydx, 'd2ydx2', d2ydx2, 'alpha', alpha, 'R', R)
     return [y, dydx, d2ydx2, alpha, R]
 
 
@@ -101,9 +100,9 @@ def x_av_t(filename):   # gir eksperementielle verdier for x v t
     return [tpos, vpos, xpos, ypos]
 
 
-punkterLB = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\LB.txt')
-punkterPP = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\PP.txt')
-punkterR = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\R.txt')
+punkterLB = x_av_t(r'/LB.txt')
+punkterPP = x_av_t(r'./PP.txt')
+punkterR = x_av_t(r'./R.txt')
 
 punkterAll = [punkterLB, punkterPP, punkterR]
 
@@ -128,8 +127,8 @@ cLB = 2 / 5
 cR = 1
 cAll = [cLB, cPP, cR]
 
-labelAllEks = ["Massiv kule Eksperementiell", "Kuleskall Eksperementiell", "Sirkulær skive Eksperementiell"]
-labelAllNum = ["Massiv kule Teoretisk", "Kuleskall Teoretisk", "Sirkulær skive Teoretisk"]
+labelAllEks = ["Massiv kule Eksperimentiell", "Kuleskall Eksperimentiell", "Sirkulær skive Eksperimentiell"]
+labelAllNum = ["Massiv kule Teoretisk", "Kuleskall Teoretisk", "Sirkulær skive teoretisk"]
 
 v_0All = [1.1348810766934287, 1.1470505158475683, 1.0590491123276344]
 
@@ -163,7 +162,6 @@ for n in range(3):
 print (v_values)
 
 #print("v-verdier", v_values)
-# plt.figure()
 
 plt.figure(0)
 plt.ylabel(r'$x(t)$')
@@ -176,7 +174,10 @@ plt.ylabel(r'$v(t)$')
 plt.xlabel(r'$t$')
 plt.grid()
 plt.legend()
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5bdf202d0e3e8a6004311f57e09dd3f103067cc2
 
 plt.show()
 
