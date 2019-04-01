@@ -71,8 +71,8 @@ def euler_xt():
     x_old = x_0
 
     for n in range(N):
-        #val = trvalues(p, x_old)
-        x_new = x_old + h * (v[n])
+        val = trvalues(p, x_old)
+        x_new = x_old + h * (v[n])*np.cos([val[3]])
         t2[n + 1] = t2_old + h
         x[n + 1] = x_new
         t2_old = t2_old + h
@@ -119,13 +119,9 @@ cPP = 2 / 3
 cLB = 2 / 5
 cR = 1
 cAll = [cLB, cPP, cR]
-<<<<<<< HEAD
+
 labelAllEks = ["Massiv kule Eksperementiell", "Kuleskall Eksperementiell", "Sirkulær skive Eksperementiell"]
 labelAllNum = ["Massiv kule Teoretisk", "Kuleskall Teoretisk", "Sirkulær skive Teoretisk"]
-=======
-labelAllEks = ["Kule eksperimentiell", "Kuleskall eksperimentiell", "Ring eksperimentiell"]
-labelAllNum = ["Kule teoretisk", "Kuleskall teoretisk", "Ring teoretisk"]
->>>>>>> e49452e938cff7a581cf1f52d227d8f1deeb2d09
 
 v_0All = [1.1348810766934287, 1.1470505158475683, 1.0590491123276344]
 
@@ -153,43 +149,13 @@ for n in range(3):
     plot_xt()
     euler_vt()
     plot_vt()
-    # print ('Resultat av v for', n, v)
-    v_values.append(v)
-    print( 'resultat for v: ', v, 'resultaterrr')
 
 print (v_values)
 
 #print("v-verdier", v_values)
 # plt.figure()
 
-plt.figure(0)
-plt.ylabel(r'$x(t)$')
-plt.xlabel(r'$t$')
-plt.grid()
-plt.legend()
 
-plt.figure(1)
-plt.ylabel(r'$v(t)$')
-plt.xlabel(r'$t$')
-plt.grid()
-plt.legend()
-
-# plt.ylabel(r'$v(t)$')
-# plt.xlabel(r'$t$')
-# plt.grid()
-
-#plt.plot(t, v, color='#4daf4a', label=labelNum)
-#plt.plot(p0, p1, color='#377eb8', label=labelEks)
-tv0 = t_values[0]
-vv0 = v_values[0]
-tv1 = t_values[1]
-vv1 = v_values[1]
-tv2 = t_values[2]
-vv2 = v_values[2]
-#plt.plot(t_values[0], v_values[0])
-#plt.plot(t_values[1], v_values[1], label='test2')
-#plt.plot(t_values[2], v_values[2], label='test3')
-# plt.legend()
 plt.show()
 
 
