@@ -119,8 +119,13 @@ cPP = 2 / 3
 cLB = 2 / 5
 cR = 1
 cAll = [cLB, cPP, cR]
+<<<<<<< HEAD
 labelAllEks = ["Massiv kule Eksperementiell", "Kuleskall Eksperementiell", "Sirkulær skive Eksperementiell"]
 labelAllNum = ["Massiv kule Teoretisk", "Kuleskall Teoretisk", "Sirkulær skive Teoretisk"]
+=======
+labelAllEks = ["Kule eksperimentiell", "Kuleskall eksperimentiell", "Ring eksperimentiell"]
+labelAllNum = ["Kule teoretisk", "Kuleskall teoretisk", "Ring teoretisk"]
+>>>>>>> e49452e938cff7a581cf1f52d227d8f1deeb2d09
 
 v_0All = [1.1348810766934287, 1.1470505158475683, 1.0590491123276344]
 
