@@ -101,18 +101,20 @@ punkterR = x_av_t(r'C:\Users\Elise\Documents\6. semester\Fysikk\R.txt')
 
 punkterAll = [punkterLB, punkterPP, punkterR]
 
+colors1=['#B22222', '#008000', '#4682B4']
+colors2=['#CD5C5C', '#90EE90',  '#87CEFA']
 
 def plot_xt():
     plt.figure(0)
-    plt.plot(t2, x, label=labelNum)
-    plt.plot(p0, p2, label=labelEks)
+    plt.plot(t2, x, label=labelNum, color=colors_1)
+    plt.plot(p0, p2, label=labelEks, color=colors_2)
 
 def plot_vt():
     plt.figure(1)
     #print ("t-verdier:", t)
     #print("v-verdier: ", v)
-    plt.plot(t, v, label=labelNum)
-    plt.plot(p0, p1, label=labelEks)
+    plt.plot(t, v, label=labelNum, color=colors_1)
+    plt.plot(p0, p1, label=labelEks, color=colors_2)
 
 
 cPP = 2 / 3
@@ -136,6 +138,8 @@ x_values = [[0], [0], [0]]
 # får jeg forskjellige resultater hver for hver loop, men nnår jeg prøver å legge inn i v_values listen blir alle
 # verdiene like, skjønner ikke hvorfor
 for n in range(3):
+    colors_1 = colors1[n]
+    colors_2 = colors2[n]
     v_0 = v_0All[n]
     labelEks = labelAllEks[n]
     labelNum = labelAllNum[n]
