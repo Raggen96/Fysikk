@@ -16,12 +16,7 @@ pR = iptrack(r'./RU.txt')
 
 pAll = [pLB, pPP, pR]
 g = 9.81
-mass = [2.2, 4.7]
-
-def normalKraft():
-    allNormalKraft = np.zeros(N + 1)
-    for i in range(N):
-        normalK = m*()
+mass = [30, 2.2, 4.7]
 
 
 # Set common figure parameters
@@ -116,8 +111,6 @@ def plot_xt():
 
 def plot_vt():
     plt.figure(1)
-    #print ("t-verdier:", t)
-    #print("v-verdier: ", v)
     plt.plot(t, v, label=labelNum, color=colors_1)
     plt.plot(p0, p1, label=labelEks, color=colors_2)
 
@@ -139,9 +132,6 @@ v_values = []
 t2_values = [[0], [0], [0]]
 x_values = [[0], [0], [0]]
 
-# Prøver å legge t, v og x verdiene inn i en liste sånn at jeg kan plotte alle. Når jeg printer v inni for løkken
-# får jeg forskjellige resultater hver for hver loop, men nnår jeg prøver å legge inn i v_values listen blir alle
-# verdiene like, skjønner ikke hvorfor
 for n in range(3):
     colors_1 = colors1[n]
     colors_2 = colors2[n]
@@ -161,7 +151,6 @@ for n in range(3):
 
 print (v_values)
 
-#print("v-verdier", v_values)
 
 plt.figure(0)
 plt.ylabel(r'$x(t)$')
@@ -175,9 +164,32 @@ plt.xlabel(r'$t$')
 plt.grid()
 plt.legend()
 
+allNormalKraft = np.zeros(N + 1)
+def normalKraft():
+    Rx = []
+    posisjons = x_av_t(punkterLB)
+    xvalue = posisjons[2]
+    val = trvalues(p,xvalue)
+    for i in range(N):
+        normalK = m*((posisjons[1]**2)/val[4]) + m*g*np.cos(val[3])
+        Rx.append(val[4])
+        allNormalKraft.append(normalK)
+
+
+def plot_n():
+    plt.figure(2)
+    plt.plot(t, allNormalKraft)
+
+
+for i in range (3):
+    m = mass[n]
+    normalKraft()
+    plot_n()
+
+plt.figure(2)
+plt.ylabel(r'$N$')
+plt.xlabel(r'$t$')
+plt.grid()
+plt.legend()
+
 plt.show()
-
-
-
-
-
